@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.listUsers = new System.Windows.Forms.ListBox();
-            this.textLastName = new System.Windows.Forms.TextBox();
-            this.textFirstName = new System.Windows.Forms.TextBox();
+            this.textFullName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,21 +44,13 @@
             this.listUsers.Size = new System.Drawing.Size(185, 276);
             this.listUsers.TabIndex = 0;
             // 
-            // textLastName
+            // textFullName
             // 
-            this.textLastName.Location = new System.Drawing.Point(282, 10);
-            this.textLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textLastName.Name = "textLastName";
-            this.textLastName.Size = new System.Drawing.Size(201, 22);
-            this.textLastName.TabIndex = 1;
-            // 
-            // textFirstName
-            // 
-            this.textFirstName.Location = new System.Drawing.Point(282, 38);
-            this.textFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textFirstName.Name = "textFirstName";
-            this.textFirstName.Size = new System.Drawing.Size(201, 22);
-            this.textFirstName.TabIndex = 2;
+            this.textFullName.Location = new System.Drawing.Point(282, 10);
+            this.textFullName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textFullName.Name = "textFullName";
+            this.textFullName.Size = new System.Drawing.Size(201, 22);
+            this.textFullName.TabIndex = 1;
             // 
             // label1
             // 
@@ -71,16 +61,6 @@
             this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(206, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
             // 
             // btnAdd
             // 
@@ -99,10 +79,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 309);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textFirstName);
-            this.Controls.Add(this.textLastName);
+            this.Controls.Add(this.textFullName);
             this.Controls.Add(this.listUsers);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
@@ -115,10 +93,8 @@
         #endregion
 
         private System.Windows.Forms.ListBox listUsers;
-        private System.Windows.Forms.TextBox textLastName;
-        private System.Windows.Forms.TextBox textFirstName;
+        private System.Windows.Forms.TextBox textFullName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAdd;
     }
 }
