@@ -25,6 +25,6 @@ namespace fd64yt_irf_week4
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Flat> Flat { get; set; }
+        public virtual DbSet<Flat> Flats { get; set; }
     }
 }
