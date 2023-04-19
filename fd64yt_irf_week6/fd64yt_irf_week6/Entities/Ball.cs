@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace fd64yt_irf_week6.Entities
 {
-    class Ball : Label
+    public class Ball : Label
     {
         public Ball()
         {

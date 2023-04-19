@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fd64yt_irf_week6.Entities
 {
-    class BallFactory
+    public class BallFactory
     {
         public Ball CreateNew()
         {
