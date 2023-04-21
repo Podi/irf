@@ -29,11 +29,19 @@ namespace fd64yt_irf_week6
             InitializeComponent();
 
             Factory = new BallFactory();
-            createTimer.Tick += CreateTimer_Tick;
-            conveyorTimer.Tick += ConveyorTimer_Tick;
+            createTimer.Tick += createTimer_Tick;
+            conveyorTimer.Tick += conveyorTimer_Tick;
         }
 
-        private void ConveyorTimer_Tick(object sender, EventArgs e)
+        private void createTimer_Tick(object sender, EventArgs e)
+        {
+            var ball = Factory.CreateNew();
+            _balls.Add(ball);
+            mainPanel.Controls.Add(ball);
+            ball.Left = -ball.Width;
+        }
+
+        private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
             foreach (var ball in _balls)
@@ -43,20 +51,12 @@ namespace fd64yt_irf_week6
                     maxPosition = ball.Left;
             }
 
-            if (maxPosition > 1000)
+            if (maxPosition >=  1000)
             {
                 var oldestBall = _balls[0];
                 mainPanel.Controls.Remove(oldestBall);
                 _balls.Remove(oldestBall);
             }
-        }
-
-        private void CreateTimer_Tick(object sender, EventArgs e)
-        {
-            var ball = Factory.CreateNew();
-            _balls.Add(ball);
-            ball.Left = -ball.Width;
-            mainPanel.Controls.Add(ball);
         }
     }
 }
