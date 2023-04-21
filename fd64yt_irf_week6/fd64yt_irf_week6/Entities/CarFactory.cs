@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace fd64yt_irf_week6.Entities
 {
-    public class BallFactory : IToyFactory
+    public class CarFactory : IToyFactory
     {
         public Toy CreateNew()
         {
-            return new Ball();
+            return new Car();
         }
     }
 }
