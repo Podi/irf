@@ -35,7 +35,7 @@
             this.btnCar = new System.Windows.Forms.Button();
             this.createTimer = new System.Windows.Forms.Timer(this.components);
             this.conveyorTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnColor = new System.Windows.Forms.Button();
+            this.btnBallColor = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainPanel.Controls.Add(this.btnColor);
+            this.mainPanel.Controls.Add(this.btnBallColor);
             this.mainPanel.Controls.Add(this.lblNext);
             this.mainPanel.Controls.Add(this.btnBall);
             this.mainPanel.Controls.Add(this.btnCar);
@@ -93,15 +93,15 @@
             this.conveyorTimer.Interval = 10;
             this.conveyorTimer.Tick += new System.EventHandler(this.conveyorTimer_Tick);
             // 
-            // btnColor
+            // btnBallColor
             // 
-            this.btnColor.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnColor.Location = new System.Drawing.Point(137, 49);
-            this.btnColor.Name = "btnColor";
-            this.btnColor.Size = new System.Drawing.Size(75, 23);
-            this.btnColor.TabIndex = 3;
-            this.btnColor.UseVisualStyleBackColor = false;
-            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
+            this.btnBallColor.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnBallColor.Location = new System.Drawing.Point(137, 49);
+            this.btnBallColor.Name = "btnBallColor";
+            this.btnBallColor.Size = new System.Drawing.Size(75, 23);
+            this.btnBallColor.TabIndex = 3;
+            this.btnBallColor.UseVisualStyleBackColor = false;
+            this.btnBallColor.Click += new System.EventHandler(this.btnBallColor_Click);
             // 
             // Form1
             // 
@@ -126,7 +126,7 @@
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.Button btnBall;
         private System.Windows.Forms.Button btnCar;
-        private System.Windows.Forms.Button btnColor;
+        private System.Windows.Forms.Button btnBallColor;
     }
 }
 

@@ -81,10 +81,13 @@ namespace fd64yt_irf_week6
 
         private void btnBall_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory
+            {
+                BallColor = btnBallColor.BackColor
+            };
         }
 
-        private void btnColor_Click(object sender, EventArgs e)
+        private void btnBallColor_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var colorPicker = new ColorDialog();
