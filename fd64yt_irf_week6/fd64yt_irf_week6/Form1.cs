@@ -46,12 +46,12 @@ namespace fd64yt_irf_week6
             var maxPosition = 0;
             foreach (var ball in _balls)
             {
-                ball.MoveBall();
+                ball.MoveToy();
                 if (ball.Left > maxPosition)
                     maxPosition = ball.Left;
             }
 
-            if (maxPosition >=  1000)
+            if (maxPosition >= 1000)
             {
                 var oldestBall = _balls[0];
                 mainPanel.Controls.Remove(oldestBall);
