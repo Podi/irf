@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace fd64yt_irf_week5
@@ -16,12 +17,29 @@ namespace fd64yt_irf_week5
     public partial class Form1 : Form
     {
         BindingList <RateData> Rates = new BindingList<RateData> ();
+        string XMLResultRates;
         public Form1()
         {
             InitializeComponent();
             GetMnbCurrencies();
+            MnbSoapRequest();
             dataGridView1.DataSource = Rates;
-            //CreateXMLRates();
+            CreateXMLRates(XMLResultRates);
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         private void GetMnbCurrencies()
@@ -59,6 +77,17 @@ namespace fd64yt_irf_week5
                 if (unit != 0)
                     rate.Value = value / unit;
             }
+        }
+        private void MnbSoapRequest()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            
+            var request = new GetExchangeRatesRequestBody();
+            
+            var response = mnbService.GetExchangeRates(request);
+            var result = response.GetExchangeRatesResult;
+
+            XMLResultRates = result;
         }
     }
 }
