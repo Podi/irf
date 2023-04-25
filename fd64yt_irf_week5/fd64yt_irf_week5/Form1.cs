@@ -1,4 +1,5 @@
-﻿using fd64yt_irf_week5.MnbServiceReference;
+﻿using fd64yt_irf_week5.Entities;
+using fd64yt_irf_week5.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,12 @@ namespace fd64yt_irf_week5
 {
     public partial class Form1 : Form
     {
+        BindingList <RateData> Rates = new BindingList<RateData> ();
         public Form1()
         {
             InitializeComponent();
             GetMnbCurrencies();
+            dataGridView1.DataSource = Rates;
         }
 
         private void GetMnbCurrencies()
