@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace fd64yt_irf_week8
+namespace UnitTestExample
 {
-    internal static class Program
+    static class Program
     {
         /// <summary>
         /// The main entry point for the application.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace fd64yt_irf_week8.Properties
+namespace UnitTestExample.Properties
 {
 
 
