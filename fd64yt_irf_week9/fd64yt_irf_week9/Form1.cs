@@ -20,6 +20,8 @@ namespace fd64yt_irf_week9
 
         Random rng = new Random(1234);
 
+        List<int> malecount = new List<int>();
+        List<int> femalecount = new List<int>();
         public Form1()
         {
             InitializeComponent();
@@ -27,14 +29,17 @@ namespace fd64yt_irf_week9
             Population = GetPopulation(@"C:\Temp\nép.csv");
             BirthProbabilities = BirthProbCreate(@"C:\Temp\születés.csv");
             DeathProbabilities = DeathProbCreate(@"C:\Temp\halál.csv");
+        }
 
+        private void Simulation()
+        {
             for (int year = 2005; year <= 2024; year++)
             {
-                for (int i = 0; i < Population.Count; i++)
+                for (int j = 0; j < Population.Count; j++)
                 {
                     Person p = new Person();
                     p = Population[j];
-                    SimStep(i, p);
+                    SimStep(j, p);
                 }
 
                 int nbrOfMales = (from x in Population
@@ -105,39 +110,73 @@ namespace fd64yt_irf_week9
             return death;
         }
 
-        private void SimStep(int year, Person person)
+        private void SimStep(int year, Person p)
         {
-            //Ha halott akkor kihagyjuk, ugrunk a ciklus következő lépésére
-            if (!person.IsAlive) return;
+            if (p.IsAlive == false) return;
 
-            // Letároljuk az életkort, hogy ne kelljen mindenhol újraszámolni
-            byte age = (byte)(year - person.BirthYear);
+            int age = year - p.BirthYear;
 
-            // Halál kezelése
-            // Halálozási valószínűség kikeresése
-            double pDeath = (from x in DeathProbabilities
-                             where x.Gender == person.Gender && x.Age == age
-                             select x.P).FirstOrDefault();
-            // Meghal a személy?
-            if (rng.NextDouble() <= pDeath)
-                person.IsAlive = false;
-
-            //Születés kezelése - csak az élő nők szülnek
-            if (person.IsAlive && person.Gender == Gender.Female)
+            var deathProb = (from d in DeathProbabilities
+                             where d.Gender == p.Gender && d.Age == age
+                             select d.P).FirstOrDefault();
+            if (rng.NextDouble() <= deathProb)
             {
-                //Szülési valószínűség kikeresése
-                double pBirth = (from x in BirthProbabilities
-                                 where x.Age == age
-                                 select x.P).FirstOrDefault();
-                //Születik gyermek?
-                if (rng.NextDouble() <= pBirth)
+                p.IsAlive = false;
+            }
+
+            if (p.IsAlive && p.Gender.Equals(Gender.Female))
+            {
+                var birthProb = (from b in BirthProbabilities
+                                 where b.Age == age
+                                 select b.P).FirstOrDefault();
+                if (rng.NextDouble() <= birthProb)
                 {
-                    Person újszülött = new Person();
-                    újszülött.BirthYear = year;
-                    újszülött.ChildNum = 0;
-                    újszülött.Gender = (Gender)(rng.Next(1, 3));
-                    Population.Add(újszülött);
+                    Person ps = new Person();
+                    ps.BirthYear = year;
+                    ps.ChildNum = 0;
+                    p.Gender = (Gender)(rng.Next(1, 3));
+                    Population.Add(p);
                 }
+            }
+            int malec = (from x in Population
+                         where x.Gender == Gender.Male
+                         select x).Count();
+            malecount.Add(malec);
+            int femalec = (from x in Population
+                           where x.Gender == Gender.Female
+                           select x).Count();
+            femalecount.Add(femalec);
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            Simulation();
+            DisplayResults();
+        }
+
+        private void DisplayResults()
+        {
+            string result = "";
+
+            for (int i = 2005; i <= malecount.Count(); i++)
+            {
+                string r = "";
+                int males = malecount[i];
+                int females = femalecount[i];
+                r = $"Szimulációs év: {i}\n\tFiúk: {males}\n\tLányok: {females}\n";
+                result = result + r;
+            }
+            richTextBox1.Text = result;
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = ofd.FileName;
             }
         }
     }
